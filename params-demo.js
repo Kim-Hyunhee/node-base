@@ -24,3 +24,11 @@ app.get("/:nickname", function (req, res) {
 });
 
 // 영상 클릭 주소 :https://www.youtube.com/watch?v=oQ8bWbvX6wo
+// 영상 타임라인 주소 : https://www.youtube.com/watch?v=a-O02JzD3us&t=75s
+app.get("/watch", function (req, res) {
+  const q = req.query;
+  console.log(q.v);
+  console.log(q.t);
+
+  res.json({ video: q.v, timeline: q.t });
+});
