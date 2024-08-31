@@ -1,0 +1,41 @@
+// express 모듈 셋팅
+const express = require("express");
+const app = express();
+
+app.listen(1234);
+
+// 데이터 셋팅
+let youtuber1 = {
+  channelTitle: "마루",
+  sub: "2.53만명",
+  videoNum: "1개",
+};
+
+let youtuber2 = {
+  channelTitle: "꿀키",
+  sub: "208만명",
+  videoNum: "482개",
+};
+
+let youtuber3 = {
+  channelTitle: "하말넘많",
+  sub: "59.3만명",
+  videoNum: "955개",
+};
+
+let db = new Map();
+db.set(1, youtuber1);
+db.set(2, youtuber2);
+db.set(3, youtuber3);
+
+app.get("/youtuber/:id", function (req, res) {
+  let { id } = req.params;
+  id = parseInt(id);
+
+  const youtuber = db.get(id);
+  if (db.get(id) == undefined) {
+    res.json({ message: "유튜버 정보를 찾을 수 없습니다." });
+  } else {
+    res.json(youtuber);
+  }
+});
