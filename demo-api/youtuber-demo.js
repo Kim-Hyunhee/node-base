@@ -40,7 +40,7 @@ app.get("/youtubers", (req, res) => {
   res.json(youtubers);
 });
 
-app.get("/youtuber/:id", function (req, res) {
+app.get("/youtubers/:id", function (req, res) {
   let { id } = req.params;
   id = parseInt(id);
 
@@ -53,7 +53,7 @@ app.get("/youtuber/:id", function (req, res) {
 });
 
 app.use(express.json()); // http 외 모듈인 '미들웨어': json 설정
-app.post("/youtuber", function (req, res) {
+app.post("/youtubers", function (req, res) {
   console.log(req.body);
   //  등록 ..? Map(db)에 저장(put) 해줘야 돼요
 
@@ -61,5 +61,17 @@ app.post("/youtuber", function (req, res) {
 
   res.json({
     message: `${db.get(id - 1).channelTitle}님, 유튜버 생활을 응원합니다.`,
+  });
+});
+
+app.delete("/youtubers/:id", function (req, res) {
+  let { id } = req.params;
+  id = parseInt(id);
+
+  const channelTitle = db.get(id).channelTitle;
+  db.delete(id);
+
+  res.json({
+    message: `${channelTitle}님, 아쉽지만 다음에 또 뵙겠습니다.`,
   });
 });
