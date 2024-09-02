@@ -80,3 +80,17 @@ app.delete("/youtubers/:id", function (req, res) {
     });
   }
 });
+
+app.delete("/youtubers", function (req, res) {
+  // db에 값이 1개 이상이면, 전체 삭제
+  var msg = "";
+  if (db.size >= 1) {
+    db.clear();
+    msg = "전체 유튜버가 삭제되었습니다.";
+  }
+  // 값이 없으면, "삭제할 유튜버가 없습니다."
+  else {
+    msg = "삭제할 유튜버가 없습니다.";
+  }
+  res.json({ message: msg });
+});
