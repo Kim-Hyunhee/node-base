@@ -39,3 +39,15 @@ app.get("/youtuber/:id", function (req, res) {
     res.json(youtuber);
   }
 });
+
+app.use(express.json()); // http 외 모듈인 '미들웨어': json 설정
+app.post("/youtuber", function (req, res) {
+  console.log(req.body);
+  //  등록 ..? Map(db)에 저장(put) 해줘야 돼요
+
+  db.set(4, req.body);
+
+  res.json({
+    message: `${db.get(4).channelTitle}님, 유튜버 생활을 응원합니다.`,
+  });
+});
