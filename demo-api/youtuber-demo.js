@@ -23,12 +23,16 @@ let youtuber3 = {
   videoNum: "955개",
 };
 
-let db = new Map();
+let db = new Map(); // key - value = json
 var id = 1;
 
 db.set(id++, youtuber1);
 db.set(id++, youtuber2);
 db.set(id++, youtuber3);
+
+app.get("/youtubers", (req, res) => {
+  res.json({ message: "test" });
+});
 
 app.get("/youtuber/:id", function (req, res) {
   let { id } = req.params;
