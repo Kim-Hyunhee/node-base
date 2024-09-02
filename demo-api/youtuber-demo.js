@@ -32,10 +32,7 @@ db.set(id++, youtuber3);
 
 app.get("/youtubers", (req, res) => {
   var youtubers = {};
-  db.forEach(function (youtuber) {
-    console.log(youtuber);
-  });
-
+  // value: 데이터, key: 인덱스
   db.forEach((value, key) => {
     youtubers[key] = value;
   });
