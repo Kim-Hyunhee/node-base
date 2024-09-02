@@ -31,7 +31,16 @@ db.set(id++, youtuber2);
 db.set(id++, youtuber3);
 
 app.get("/youtubers", (req, res) => {
-  res.json({ message: "test" });
+  var youtubers = {};
+  db.forEach(function (youtuber) {
+    console.log(youtuber);
+  });
+
+  db.forEach((value, key) => {
+    youtubers[key] = value;
+  });
+
+  res.json(youtubers);
 });
 
 app.get("/youtuber/:id", function (req, res) {
