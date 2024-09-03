@@ -69,15 +69,15 @@ app.delete("/youtubers/:id", function (req, res) {
   id = parseInt(id);
 
   var youtuber = db.get(id);
-  if (youtuber == undefined) {
-    res.json({ message: `요청하신 ${id}번은 없는 유튜버입니다.` });
-  } else {
+  if (youtuber) {
     const channelTitle = youtuber.channelTitle;
     db.delete(id);
 
     res.json({
       message: `${channelTitle}님, 아쉽지만 다음에 또 뵙겠습니다.`,
     });
+  } else {
+    res.json({ message: `요청하신 ${id}번은 없는 유튜버입니다.` });
   }
 });
 
