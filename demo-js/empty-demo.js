@@ -12,9 +12,11 @@ console.log(Object.keys(str1).length === 0);
 console.log(Object.keys(str2).length === 0);
 
 function isEmpty(obj) {
-  if (Object.keys(obj).length === 0) {
-    return true;
-  } else {
-    return false;
+  if (obj.constructor === Object) {
+    if (Object.keys(obj).length === 0) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
